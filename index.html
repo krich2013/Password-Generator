@@ -39,10 +39,7 @@
     var LowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
     var SpecialCharacters = '!?@$&^*(>#'
 
-    // Assigning a variable to the the password to write to the html
-    var FinalPassword = document.getElementById('FinalPassword');
-
-    // function randomCharacters(PasswordLength) {
+    function randomCharacters(PasswordLength) {
     var result = '';
         // All three are true: special characters, numbers, and uppercase
         if (ContainsSpecialCharacters === true && ContainsNumbers === true && ContainsUppercase === true) {
@@ -124,9 +121,13 @@
             console.log(result);
         }
 
-    // return result;
-    // }
+    return result;
+    }
 
+    var Password = randomCharacters(PasswordLength);
+    document.getElementById('FinalPassword').innerHTML = Password;
+
+    
     </script>
 </body>
 </html>
