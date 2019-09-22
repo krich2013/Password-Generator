@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Password Generator</title>
+</head>
+<body>
+    <p id="FinalPassword"></p>
+
+    <script type="text/javascript">    
+
+    // Setting up user inputs
+    var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
+    PasswordLength = parseInt(PasswordLength);
+
+
+    // Confirming valid password length
+    if (PasswordLength < 8) {
+        alert("This is not a valid input.  Please refresh your page and try again");
+    }
+
+    else if (PasswordLength > 128) {
+        alert("This is not a valid input.  Please refresh your page and try again");
+    }
+
+    var ContainsNumbers = confirm("Do you want to include numbers?");
+    var ContainsSpecialCharacters = confirm("Do you want to include special characters?");
+    var ContainsUppercase = confirm("Do you want to include uppercase letters?");
+
+    // Arrays for possible options
+    var Numbers = '0123456789';
+    var UppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+    var LowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+    var SpecialCharacters = '!?@$&^*(>#'
+
+    // Storing the values of the password to write to the html
+    var FinalPassword = document.getElementById('FinalPassword');
+
+    function randomCharacters(letters) {
+    var result = '';
+        // Special character = true options: lowercase and special characters, uppercase and special characters, special characters and numbers, special characters, numbers, uppercase
+
+
+        // Numbers = true options: lowercase and numbers, uppercase and numbers, special characters and numbers, special characters, numbers, uppercase 
+        
+        // Uppercase = true options: lowercase and uppercase, uppercase and numbers, uppercase and special characters, uppercase, special characters, and numbers
+
+        for (var i = 0; i < letters; i++) {
+            result += LettersNumbers[Math.floor(Math.random() * LettersNumbers.length)];
+            console.log(result);
+        }
+
+    return result;
+    }
+
+    </script>
+</body>
+</html>
