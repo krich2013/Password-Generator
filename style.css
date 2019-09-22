@@ -1,0 +1,23 @@
+.password-border {
+    margin: 20px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: auto;
+    width: 650px;
+    border-bottom-style: solid;
+    border-top-style: solid;
+    border-color: #dddddd;
+    border-width: medium;
+}
+
+.password-block {
+    border-style: dashed;
+    border-color:#dddddd;
+    text-align: center;
+    border-width: medium;
+    height: 200px;
+}
+
+h1 {
+    margin: 20px;
+}
