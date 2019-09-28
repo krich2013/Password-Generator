@@ -12,26 +12,35 @@
     <div class="password-border">
         <div class="password-block">
             <p id="FinalPassword">Your secure password</p>
+            <button id="PasswordButton">Generate Password</button>
         </div>
     </div>
     
     <script type="text/javascript">    
 
     // Setting up user inputs
+    var PasswordButton = document.getElementById("PasswordButton");
+
+    PasswordButton.addEventListener("click", function() {
+    
     var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
     PasswordLength = parseInt(PasswordLength);
     console.log(PasswordLength);
-
-
+        
     // Confirming valid password length
     if (PasswordLength < 8) {
-        alert("This is not a valid input.  Please refresh your page and try again");
+        alert("This is not a valid input.");
+        var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
+        PasswordLength = parseInt(PasswordLength);
     }
 
     else if (PasswordLength > 128) {
-        alert("This is not a valid input.  Please refresh your page and try again");
+        alert("This is not a valid input.");
+        var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
+        PasswordLength = parseInt(PasswordLength);
     }
 
+    // Set variables for user inputs
     var ContainsNumbers = confirm("Do you want to include numbers?");
     var ContainsSpecialCharacters = confirm("Do you want to include special characters?");
     var ContainsUppercase = confirm("Do you want to include uppercase letters?");
@@ -43,7 +52,7 @@
     var Numbers = '0123456789';
     var UppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
     var LowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-    var SpecialCharacters = '!?@$&^*(>#'
+    var SpecialCharacters = '!?@$&^*(>#';
 
     function randomCharacters(PasswordLength) {
     var result = '';
@@ -132,6 +141,7 @@
 
     var Password = randomCharacters(PasswordLength);
     document.getElementById('FinalPassword').innerHTML = Password;
+    })
 
     
     </script>
