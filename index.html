@@ -12,137 +12,145 @@
     <div class="password-border">
         <div class="password-block">
             <p id="FinalPassword">Your secure password</p>
-            <button id="PasswordButton">Generate Password</button>
         </div>
+        <button id="PasswordButton">Generate Password</button>
+        <button id="CopyButton">Copy to Clipboard</button>
     </div>
     
     <script type="text/javascript">    
 
     // Setting up user inputs
     var PasswordButton = document.getElementById("PasswordButton");
+    var CopyButton = document.getElementById("CopyButton");
 
     PasswordButton.addEventListener("click", function() {
     
-    var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
-    PasswordLength = parseInt(PasswordLength);
-    console.log(PasswordLength);
+        var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
+        PasswordLength = parseInt(PasswordLength);
+            
+        // Confirming valid password length
+        if (PasswordLength < 8) {
+            alert("This is not a valid input.");
+            var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
+            PasswordLength = parseInt(PasswordLength);
+        }
+
+        else if (PasswordLength > 128) {
+            alert("This is not a valid input.");
+            var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
+            PasswordLength = parseInt(PasswordLength);
+        }
+
+        // Set variables for user inputs
+        var ContainsNumbers = confirm("Do you want to include numbers?");
+        var ContainsSpecialCharacters = confirm("Do you want to include special characters?");
+        var ContainsUppercase = confirm("Do you want to include uppercase letters?");
+
+        // Arrays for possible options
+        var Numbers = '0123456789';
+        var UppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        var LowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
+        var SpecialCharacters = '!?@$&^*(>#';
+
+        function randomCharacters(PasswordLength) {
+        var result = '';
+            // All three are true: special characters, numbers, and uppercase
+            if (ContainsSpecialCharacters === true && ContainsNumbers === true && ContainsUppercase === true) {
+                var ComplexPassword = LowercaseLetters.concat(Numbers, UppercaseLetters, SpecialCharacters);
+                console.log(ComplexPassword);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += ComplexPassword[Math.floor(Math.random() * ComplexPassword.length)];
+                }
+                // console.log(result);
+            }
+
+            // Two are true: special characters and numbers
+            if (ContainsSpecialCharacters === true && ContainsNumbers ===true && ContainsUppercase === false) {
+                var MediumPassword1 = LowercaseLetters.concat(Numbers, SpecialCharacters);
+                console.log(MediumPassword1);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += MediumPassword1[Math.floor(Math.random() * MediumPassword1.length)];
+                }
+                // console.log(result);
+            }
+
+            // Two are true: special characters and uppercase
+            if (ContainsSpecialCharacters === true && ContainsNumbers ===false && ContainsUppercase === true) {
+                var MediumPassword2 = LowercaseLetters.concat(Numbers, UppercaseLetters);
+                console.log(MediumPassword2);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += MediumPassword2[Math.floor(Math.random() * MediumPassword2.length)];
+                }
+                // console.log(result);
+            }
+
+            // Two are true: numbers and uppercase
+            if (ContainsSpecialCharacters === false && ContainsNumbers === true && ContainsUppercase === true) {
+                var MediumPassword3 = LowercaseLetters.concat(Numbers, UppercaseLetters);
+                console.log(MediumPassword3);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += MediumPassword3[Math.floor(Math.random() * MediumPassword3.length)];
+                }
+                // console.log(result);
+            }
+
+            // One is true: numbers only
+            if (ContainsSpecialCharacters === false && ContainsNumbers === true && ContainsUppercase === false) {
+                var LowPassword1 = LowercaseLetters.concat(Numbers);
+                console.log(LowPassword1);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += LowPassword1[Math.floor(Math.random() * LowPassword1.length)];
+                }
+                // console.log(result);
+            }
+
+            // One is true: special characters only
+            if (ContainsSpecialCharacters === true && ContainsNumbers === false && ContainsUppercase === false) {
+                var LowPassword2 = LowercaseLetters.concat(SpecialCharacters);
+                console.log(LowPassword2);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += LowPassword2[Math.floor(Math.random() * LowPassword2.length)];
+                }
+                // console.log(result);
+            }
+
+            // One is true: uppercase only
+            if (ContainsSpecialCharacters === false && ContainsNumbers === false && ContainsUppercase === true) {
+                var LowPassword3 = LowercaseLetters.concat(UppercaseLetters);
+                console.log(LowPassword3);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += LowPassword3[Math.floor(Math.random() * LowPassword3.length)];
+                }
+                // console.log(result);
+            }
+
+            // None are true: lowercase only
+            if (ContainsSpecialCharacters === false && ContainsNumbers === false && ContainsUppercase === false) {
+                var LowPassword4 = LowercaseLetters;
+                console.log(LowPassword4);
+                for (var i = 0; i < PasswordLength; i++) {
+                    result += LowPassword4[Math.floor(Math.random() * LowPassword4.length)];
+                }
+                // console.log(result);
+            }
+
+        return result;
+        }
+
+        var Password = randomCharacters(PasswordLength);
+        var FinalPassword = document.getElementById('FinalPassword')
         
-    // Confirming valid password length
-    if (PasswordLength < 8) {
-        alert("This is not a valid input.");
-        var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
-        PasswordLength = parseInt(PasswordLength);
-    }
-
-    else if (PasswordLength > 128) {
-        alert("This is not a valid input.");
-        var PasswordLength = prompt("How long do you want your password to be (between 8 and 128 characters)?");
-        PasswordLength = parseInt(PasswordLength);
-    }
-
-    // Set variables for user inputs
-    var ContainsNumbers = confirm("Do you want to include numbers?");
-    var ContainsSpecialCharacters = confirm("Do you want to include special characters?");
-    var ContainsUppercase = confirm("Do you want to include uppercase letters?");
-        console.log(ContainsNumbers);
-        console.log(ContainsSpecialCharacters);
-        console.log(ContainsUppercase)
-
-    // Arrays for possible options
-    var Numbers = '0123456789';
-    var UppercaseLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
-    var LowercaseLetters = 'abcdefghijklmnopqrstuvwxyz';
-    var SpecialCharacters = '!?@$&^*(>#';
-
-    function randomCharacters(PasswordLength) {
-    var result = '';
-        // All three are true: special characters, numbers, and uppercase
-        if (ContainsSpecialCharacters === true && ContainsNumbers === true && ContainsUppercase === true) {
-            var ComplexPassword = LowercaseLetters.concat(Numbers, UppercaseLetters, SpecialCharacters);
-            console.log(ComplexPassword);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += ComplexPassword[Math.floor(Math.random() * ComplexPassword.length)];
-            }
-            console.log(result);
-        }
-
-        // Two are true: special characters and numbers
-        if (ContainsSpecialCharacters === true && ContainsNumbers ===true && ContainsUppercase === false) {
-            var MediumPassword1 = LowercaseLetters.concat(Numbers, SpecialCharacters);
-            console.log(MediumPassword1);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += MediumPassword1[Math.floor(Math.random() * MediumPassword1.length)];
-            }
-            console.log(result);
-        }
-
-        // Two are true: special characters and uppercase
-        if (ContainsSpecialCharacters === true && ContainsNumbers ===false && ContainsUppercase === true) {
-            var MediumPassword2 = LowercaseLetters.concat(Numbers, UppercaseLetters);
-            console.log(MediumPassword2);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += MediumPassword2[Math.floor(Math.random() * MediumPassword2.length)];
-            }
-            console.log(result);
-        }
-
-        // Two are true: numbers and uppercase
-        if (ContainsSpecialCharacters === false && ContainsNumbers === true && ContainsUppercase === true) {
-            var MediumPassword3 = LowercaseLetters.concat(Numbers, UppercaseLetters);
-            console.log(MediumPassword3);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += MediumPassword3[Math.floor(Math.random() * MediumPassword3.length)];
-            }
-            console.log(result);
-        }
-
-        // One is true: numbers only
-        if (ContainsSpecialCharacters === false && ContainsNumbers === true && ContainsUppercase === false) {
-            var LowPassword1 = LowercaseLetters.concat(Numbers);
-            console.log(LowPassword1);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += LowPassword1[Math.floor(Math.random() * LowPassword1.length)];
-            }
-            console.log(result);
-        }
-
-        // One is true: special characters only
-        if (ContainsSpecialCharacters === true && ContainsNumbers === false && ContainsUppercase === false) {
-            var LowPassword2 = LowercaseLetters.concat(SpecialCharacters);
-            console.log(LowPassword2);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += LowPassword2[Math.floor(Math.random() * LowPassword2.length)];
-            }
-            console.log(result);
-        }
-
-        // One is true: uppercase only
-        if (ContainsSpecialCharacters === false && ContainsNumbers === false && ContainsUppercase === true) {
-            var LowPassword3 = LowercaseLetters.concat(UppercaseLetters);
-            console.log(LowPassword3);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += LowPassword3[Math.floor(Math.random() * LowPassword3.length)];
-            }
-            console.log(result);
-        }
-
-        // None are true: lowercase only
-        if (ContainsSpecialCharacters === false && ContainsNumbers === false && ContainsUppercase === false) {
-            var LowPassword4 = LowercaseLetters;
-            console.log(LowPassword4);
-            for (var i = 0; i < PasswordLength; i++) {
-                result += LowPassword4[Math.floor(Math.random() * LowPassword4.length)];
-            }
-            console.log(result);
-        }
-
-    return result;
-    }
-
-    var Password = randomCharacters(PasswordLength);
-    document.getElementById('FinalPassword').innerHTML = Password;
+        // Print password to the html
+        FinalPassword.innerHTML = Password;
+        FinalPassword.style.fontWeight = "bold";
+        FinalPassword.style.color = "black";
+    
     })
 
+    CopyButton.addEventListener("click", function() {
+        document.FinalPassword.select();
+        document.execCommand("copy");
+    })
     
     </script>
 </body>

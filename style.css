@@ -15,9 +15,38 @@
     border-color:#dddddd;
     text-align: center;
     border-width: medium;
-    height: 200px;
+    height: 150px;
 }
 
 h1 {
     margin: 20px;
+}
+
+p {
+    color: gray;
+}
+
+#PasswordButton {
+    position: relative;
+    background-color: darkred;
+    color: white;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 20px;
+}
+
+#CopyButton {
+    position: relative;
+    left: 310px;
+    background-color: gray;
+    color: white;
+    padding: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-top: 20px;
+    font-size: 16px;
+    border-radius: 20px;
 }
